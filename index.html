@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Architect’s Blueprint: My Tech Career Fields</title>
+
+    <!-- Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            background: transparent !important;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            color: #ffffff;
+            font-family: 'Orbitron', Arial, sans-serif;
+            text-shadow: 0 0 5px #000;
+        }
+
+        /* MATRIX BACKGROUND */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* BOOT SCREEN */
+        #introScreen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            color: #00ff41;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: left;
+            font-size: 22px;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+            overflow: hidden;
+        }
+
+        /* CRT Scanlines */
+        #introScreen::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0,255,65,0.06) 0px,
+                rgba(0,255,65,0.06) 2px,
+                rgba(0,0,0,0.2) 3px
+            );
+            opacity: 0.7;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        #introText {
+            white-space: pre-line;
+            line-height: 1.4em;
+        }
+
+        /* ACCESS + WELCOME SCREEN */
+        #accessWelcomeScreen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            color: #00ff41;
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: 'Orbitron', monospace;
+            font-size: 40px;
+            text-shadow: 0 0 15px #00ff41;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+        }
+
+        #screenText {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* HEADER (LOGO ALIGNMENT FIXES HERE) */
+        header {
+            padding-top: 20px;     /* reduced to balance spacing */
+            padding-bottom: 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            width: 100%;
+        }
+
+        header h1 {
+            margin-bottom: 10px;  /* tighten vertical spacing */
+        }
+
+        header img {
+            width: 140px;
+            margin-top: 50px;      /* shifted down for proper centering */
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #typedText {
+            font-size: 18px;
+            color: #ffffff;
+            text-shadow: 0 0 8px #00ff41;
+            min-height: 25px;
+            font-family: 'Orbitron', monospace;
+            text-align: center;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            text-align: center;
+        }
+
+        .visible {
+            opacity: 1 !important;
+        }
+
+        /* IMAGES */
+        .glow-img {
+            width: 100%;
+            max-width: 700px;
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 15px #00ff41;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 20px;
+            text-align: center;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 8px #00ff41;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BOOT SCREEN -->
+    <div id="introScreen">
+        <div id="introText"></div>
+    </div>
+
+    <!-- COMBINED ACCESS + WELCOME SCREEN -->
+    <div id="accessWelcomeScreen">
+        <div id="screenText">SYSTEM ACCESS GRANTED</div>
+    </div>
+
+    <!-- MATRIX BACKGROUND -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- HEADER -->
+    <header id="mainHeader">
+        <h1>The Architect’s Blueprint: My Tech Career Fields</h1>
+        <p id="typedText"></p>
+        <img src="zion.png" alt="Tech Logo">
+    </header>
+
+    <!-- CYBER SECTION -->
+    <div id="cyber" class="section">
+        <h2>Cyber Security</h2>
+        <p>I want to defend critical systems, safeguard information,
+		and stay one step ahead of threats that most people never even see.
+		Working with agencies like the NSA or CIA would open the path to
+		mastering this field and understanding just how deep the digital
+		'rabbit hole' goes.</p>
+        <img src="cyber2.png" class="glow-img" alt="Cybersecurity">
+    </div>
+
+    <!-- DATA CENTER SECTION -->
+    <div id="data" class="section">
+        <h2>Data Center Architecture</h2>
+        <p>I’m drawn to this field because it represents the physical
+		side of modern computing—the part most people never see.
+		Understanding how power, networking, redundancy, and security
+		come together to keep systems online is both challenging and
+		essential. Companies like Amazon, Google, or Microsoft are constantly
+		building and optimizing these environments, and I want to be part of that work.</p>
+        <img src="data2.png" class="glow-img" alt="Data Center">
+    </div>
+
+    <!-- NETWORK INSTALLER SECTION -->
+    <div id="network" class="section">
+        <h2>Network Installer</h2>
+        <p>What interests me most about this field is how precision
+		and planning directly shape performance. Every cable, rack,
+		and termination affects the reliability of the entire system.
+		Whether it’s designing structured cabling, configuring switches,
+		or ensuring clean fiber runs, the work demands both technical skill
+		and attention to detail.</p>
+        <img src="install2.png" class="glow-img" alt="Network Installer">
+    </div>
+
+    <footer id="mainFooter">
+        Jeremy Salinas INFS-3308-01-Fall 2025 UTRGV
+    </footer>
+
+    <!-- MATRIX RAIN SCRIPT -->
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+        const letters = "アカサタナハマヤラワン012345789";
+        const matrix = letters.split("");
+        const fontSize = 25;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0,0,0,0.07)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00FF41";
+            ctx.font = fontSize + "px monospace";
+
+            drops.forEach((y, index) => {
+                const text = matrix[Math.floor(Math.random() * matrix.length)];
+                ctx.fillText(text, index * fontSize, y * fontSize);
+
+                if (y * fontSize > canvas.height && Math.random() > 0.975) drops[index] = 0;
+
+                drops[index]++;
+            });
+        }
+        setInterval(draw, 100);
+    </script>
+
+    <!-- FADE-IN CONTENT -->
+    <script>
+        function fadeInContent() {
+            ["mainHeader", "cyber", "data", "network", "mainFooter"]
+                .forEach(id => document.getElementById(id).style.opacity = "1");
+        }
+    </script>
+
+    <!-- TYPEWRITER -->
+    <script>
+        const textToType = "Mapping the digital ‘rabbit hole’ that will define my future in technology.";
+        let ti = 0;
+
+        function typeWriter() {
+            if (ti < textToType.length) {
+                typedText.innerHTML += textToType.charAt(ti);
+                ti++;
+                setTimeout(typeWriter, 35);
+            }
+        }
+    </script>
+
+    <!-- BOOT SEQUENCE -->
+    <script>
+        const introText = document.getElementById("introText");
+        const bootLines = [
+            "[OK] Initializing kernel modules...",
+            "[OK] Loading encrypted sectors...",
+            "[OK] Establishing neural uplink...",
+            "[OK] Loading MATRIX construct...",
+            "[OK] Validating access token...",
+            "[OK] Checking system entropy...",
+            "[OK] Boot sequence complete."
+        ];
+
+        let lineIndex = 0;
+
+        function bootSequence() {
+            if (lineIndex < bootLines.length) {
+                introText.innerHTML += bootLines[lineIndex] + "\n";
+                lineIndex++;
+                setTimeout(bootSequence, 180);
+            } else {
+                setTimeout(() => {
+                    introScreen.style.opacity = "0";
+                    setTimeout(() => {
+                        introScreen.style.display = "none";
+                        launchAccessWelcome();
+                    }, 900);
+                }, 400);
+            }
+        }
+
+        bootSequence();
+    </script>
+
+    <!-- ACCESS + WELCOME LOGIC -->
+    <script>
+        const accessWelcome = document.getElementById("accessWelcomeScreen");
+        const screenTextEl = document.getElementById("screenText");
+        const welcomeMsg = "WELCOME TO MY FUTURE";
+
+        function launchAccessWelcome() {
+            accessWelcome.style.opacity = "1";
+
+            setTimeout(() => {
+                screenTextEl.style.opacity = "0";
+
+                setTimeout(() => {
+                    startWelcomeDecrypt();
+                }, 1000);
+
+            }, 1400);
+        }
+
+        function startWelcomeDecrypt() {
+            const chars = "!@#$%^&*1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let cycles = 0;
+
+            screenTextEl.innerHTML = "";
+            screenTextEl.style.opacity = "1";
+
+            const interval = setInterval(() => {
+                let glitched = "";
+
+                for (let i = 0; i < welcomeMsg.length; i++) {
+                    if (welcomeMsg[i] === " ") {
+                        glitched += " ";
+                        continue;
+                    }
+                    glitched += chars[Math.floor(Math.random() * chars.length)];
+                }
+
+                screenTextEl.innerHTML = glitched;
+                cycles++;
+
+                if (cycles >= 15) {
+                    clearInterval(interval);
+                    screenTextEl.innerHTML = welcomeMsg;
+
+                    setTimeout(() => {
+                        accessWelcome.style.opacity = "0";
+                        setTimeout(() => {
+                            fadeInContent();
+                            typeWriter();
+                        }, 900);
+                    }, 1200);
+                }
+            }, 75);
+        }
+    </script>
+
+</body>
+</html>
